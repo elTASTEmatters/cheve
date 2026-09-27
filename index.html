@@ -3356,6 +3356,33 @@ const PRODUCTOS = _P.map(a => ({
   cat: catDe(a[3])
 }));
 
+/* ---------- 4b. LO QUE PUBLICAN LAS CERVECERÍAS EN SU PORTAL ---------- */
+/* activo:false → la etiqueta se pausa y sale del catálogo; también ajusta existencia,
+   precio y ficha, y agrega las altas nuevas. Demo: se lee de este navegador. */
+const PORTAL_CLAVE = "elTASTE.portal.v1";
+const PRODUCTOS_ORIG = PRODUCTOS.map(p => ({...p}));
+function portalAplicar(){
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(PORTAL_CLAVE) || "null"); } catch(e){}
+  PRODUCTOS.length = 0;
+  PRODUCTOS_ORIG.forEach(p => PRODUCTOS.push({...p}));
+  if (!d) return;
+  Object.entries(d.cambios || {}).forEach(([sku, c]) => {
+    const p = PRODUCTOS.find(x => x.sku === sku); if (!p) return;
+    ["n","estilo","abv","ibu","envase","ml","piezas","base","stock"].forEach(k => { if (c[k] != null) p[k] = c[k]; });
+    p.cat = catDe(p.estilo);
+    p.pausado = c.activo === false;
+  });
+  (d.nuevos || []).forEach(n => {
+    if (PRODUCTOS.some(p => p.sku === n.sku) || !CERVECERIAS.some(c => c.id === n.cerv)) return;
+    PRODUCTOS.push({sku:n.sku, cerv:n.cerv, n:n.n, estilo:n.estilo, abv:n.abv, ibu:n.ibu, envase:n.envase,
+      ml:n.ml, piezas:n.piezas, base:n.base, stock:n.stock, premio:null, cat:catDe(n.estilo),
+      nuevo:true, pausado:n.activo === false});
+  });
+}
+portalAplicar();
+const enVenta = () => PRODUCTOS.filter(p => !p.pausado);
+
 /* ---------- 5. FLETERAS ---------- */
 const FLETERAS = [
   {id:"paquetexpress", n:"Paquetexpress", url:"https://www.paquetexpress.com.mx/",  color:"#E30613", ini:"PX",
@@ -3570,8 +3597,8 @@ function pasarEdad(){
 function pintarCervecerias(){
   const cont = document.getElementById("carrusel-cerv");
   cont.innerHTML = CERVECERIAS.map(cv => {
-    const n = PRODUCTOS.filter(p => p.cerv === cv.id).length;
-    const prem = PRODUCTOS.filter(p => p.cerv === cv.id && p.premio).length;
+    const n = enVenta().filter(p => p.cerv === cv.id).length;
+    const prem = enVenta().filter(p => p.cerv === cv.id && p.premio).length;
     return `<button class="t-cerv" data-cerv="${cv.id}" onclick="filtrarCerveceria('${cv.id}')"
       aria-pressed="${filtroCerv===cv.id}">
       ${escudoHTML(cv, 72)}
@@ -3669,6 +3696,7 @@ function pintar(){
   if (fCerv !== (filtroCerv||"")) { filtroCerv = fCerv || null; pintarCervecerias(); }
 
   let lista = PRODUCTOS.filter(p => {
+    if (p.pausado) return false;
     const cv = cervDe(p.cerv);
     if (fCerv && p.cerv !== fCerv) return false;
     if (fCiu  && cv.ciudad !== fCiu) return false;
@@ -3721,6 +3749,7 @@ function pintar(){
         ${siluetaHTML(p)}
         ${escudoHTML(cv, 46)}
         <div class="medallas">
+          ${p.nuevo ? `<span class="medalla" style="background:var(--lupulo);color:#fff">NUEVA</span>` : ""}
           ${p.premio ? `<span class="medalla ${p.premio.lugar}">🏅<b class="m-largo">${p.premio.comp}</b><b class="m-corto">${p.premio.lugar}</b></span>` : ""}
           ${est ? `<span class="medalla" style="background:var(--papel)">★ ${est.toFixed(1)}</span>` : ""}
         </div>
@@ -4120,7 +4149,7 @@ function tabResena(t){
   if (t === "cerveza"){
     lab.textContent = "¿Qué cerveza?";
     sub.textContent = "Dinos qué tal estuvo la chela.";
-    sel.innerHTML = PRODUCTOS.slice().sort((a,b)=>a.n.localeCompare(b.n))
+    sel.innerHTML = enVenta().sort((a,b)=>a.n.localeCompare(b.n))
       .map(p => `<option value="${p.sku}">${p.n} — ${cervDe(p.cerv).n}</option>`).join("");
     sel.disabled = false;
   } else if (t === "cerveceria"){
@@ -5090,9 +5119,18 @@ document.querySelectorAll(".modal").forEach(m =>
   m.addEventListener("click", e => { if (e.target === m) m.classList.remove("on"); }));
 
 document.getElementById("c-cerv").textContent = CERVECERIAS.length;
-document.getElementById("c-prod").textContent = PRODUCTOS.length;
-document.getElementById("c-est").textContent  = new Set(PRODUCTOS.map(p=>p.estilo)).size;
-document.getElementById("c-prem").textContent = PRODUCTOS.filter(p=>p.premio).length;
+function pintarCifras(){
+  document.getElementById("c-prod").textContent = enVenta().length;
+  document.getElementById("c-est").textContent  = new Set(enVenta().map(p=>p.estilo)).size;
+  document.getElementById("c-prem").textContent = enVenta().filter(p=>p.premio).length;
+}
+pintarCifras();
+/* si la cervecería publica desde su portal con esta página abierta, se refresca sola */
+window.addEventListener("storage", e => {
+  if (e.key !== PORTAL_CLAVE) return;
+  portalAplicar(); pintarCervecerias(); pintarCifras(); pintar();
+  tostada("Catálogo actualizado por una cervecería", "🍺");
+});
 document.getElementById("pie-fleteras").innerHTML =
   FLETERAS.map(f => `<li><a href="${f.url}" target="_blank" rel="noopener">${f.n} ↗</a></li>`).join("");
 
