@@ -127,7 +127,7 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 .tabs{display:flex;background:var(--papel-2);border:2px solid var(--tinta);border-radius:99px;padding:3px}
 .tabs button{padding:7px 14px;border-radius:99px;font-weight:700;font-size:13.5px;white-space:nowrap}
 .tabs button[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
-.tabs button span{font-family:'Space Mono',monospace;font-size:11px;opacity:.7;margin-left:3px}
+.tabs button span[id]{font-family:'Space Mono',monospace;font-size:11px;opacity:.7;margin-left:3px}
 
 .aviso{display:flex;gap:12px;align-items:flex-start;background:#fff;border:2px dashed var(--linea-2);border-radius:var(--r);padding:13px 16px;font-size:14px;color:var(--tinta-80);margin-bottom:18px}
 .aviso b{color:var(--tinta)}
@@ -188,6 +188,37 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 .hist li time{font-family:'Space Mono',monospace;font-size:11px;color:var(--tinta-60);flex:none;min-width:118px}
 .pie{padding:22px 16px 110px;font-size:12.5px;color:var(--tinta-60);text-align:center}
 .pie button{font-weight:700;text-decoration:underline;color:var(--tinta-80)}
+
+/* administración */
+.banda-adm{background:var(--oro);color:var(--tinta);border-bottom:2px solid var(--tinta);font-weight:700;font-size:14px}
+.banda-adm .env{display:flex;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.banda-adm button{border:2px solid var(--tinta);border-radius:99px;padding:5px 13px;background:#fff;font-weight:700;font-size:13px}
+.banda-adm span{margin-right:auto}
+.rol{display:inline-block;background:var(--oro);color:var(--tinta);border-radius:99px;padding:3px 10px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;vertical-align:middle;margin-left:8px}
+.adm-escudo{width:72px;height:72px;border-radius:50%;background:var(--oro);display:grid;place-items:center;font-size:30px;box-shadow:0 0 0 2px var(--tinta),0 0 0 4px var(--papel),0 0 0 6px rgba(36,23,16,.16);flex:none}
+.tabla-adm{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:2px solid var(--tinta);border-radius:var(--r);overflow:hidden;margin-bottom:40px}
+.tabla-adm th{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-60);text-align:left;padding:11px 14px;background:var(--papel-2);border-bottom:2px solid var(--tinta);white-space:nowrap}
+.tabla-adm td{padding:10px 14px;border-bottom:1px solid var(--linea);font-size:14px;vertical-align:middle}
+.tabla-adm tr:last-child td{border-bottom:0}
+.tabla-adm tbody tr:hover td{background:#FFFBF2}
+.tabla-adm .num{font-family:'Space Mono',monospace;font-weight:700;text-align:center}
+.tabla-adm .num.cero{color:var(--tinta-35)}
+.tabla-adm .num.alerta{color:var(--mandarina)}
+.c-cerv{display:flex;align-items:center;gap:12px}
+.c-cerv b{display:block;font-size:15px}
+.c-cerv small{color:var(--tinta-60);font-size:12.5px}
+.ult{font-size:12.5px;color:var(--tinta-60);max-width:260px}
+.ult time{font-family:'Space Mono',monospace;font-size:10.5px;display:block}
+.b-adm{border:2px solid var(--tinta);border-radius:99px;padding:7px 14px;font-weight:700;font-size:13px;background:var(--oro);white-space:nowrap}
+.b-adm:hover{box-shadow:var(--sombra);transform:translate(-2px,-2px)}
+
+/* selector de idioma */
+.idioma{display:flex;border:1.5px solid rgba(251,240,220,.35);border-radius:99px;padding:2px;flex:none}
+.idioma button{font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;color:rgba(251,240,220,.7);padding:5px 9px;border-radius:99px;letter-spacing:.05em}
+.idioma button[aria-pressed="true"]{background:var(--oro);color:var(--tinta)}
+.idioma button:hover{color:var(--papel)}
+.idioma button[aria-pressed="true"]:hover{color:var(--tinta)}
+.idioma-acc{position:absolute;top:18px;right:18px;z-index:2}
 
 /* barra de publicar */
 #pub{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);z-index:80;background:var(--tinta);color:var(--papel);
@@ -273,6 +304,15 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
   .stock-w{margin-left:0;width:100%;justify-content:space-between;border-top:1px dashed var(--linea);padding-top:10px}
   #tostada{bottom:84px}
   .lista-usu{grid-template-columns:1fr}
+  .tabla-adm thead{display:none}
+  .tabla-adm,.tabla-adm tbody,.tabla-adm tr,.tabla-adm td{display:block;width:100%}
+  .tabla-adm tr{border-bottom:2px solid var(--tinta);padding:12px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px 8px}
+  .tabla-adm tr:last-child{border-bottom:0}
+  .tabla-adm td{border:0;padding:0}
+  .tabla-adm td.c1,.tabla-adm td.ult,.tabla-adm td.acc{grid-column:1/-1}
+  .tabla-adm td.num{text-align:left;background:var(--papel);border-radius:8px;padding:6px 8px}
+  .tabla-adm td.num::before{content:attr(data-l);display:block;font-family:'Space Mono',monospace;font-size:9px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-60)}
+  .tabla-adm td.acc .b-adm{width:100%;text-align:center}
 }
 </style>
 </head>
@@ -280,29 +320,78 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 
 <!-- ===================== ACCESO ===================== -->
 <main id="acceso">
+  <div class="idioma idioma-acc" role="group" aria-label="Idioma / Language"><button data-lang="es">ES</button><button data-lang="en">EN</button></div>
   <div class="acc-caja">
     <span class="logotipo claro oro" style="--w:190px"><span class="wm" role="img" aria-label="el TASTE"></span><b>de la cheve artesanal</b></span>
-    <div><span class="etq dato">Portal de cerveceros</span></div>
-    <h1>Tu catálogo en el TASTE</h1>
-    <p>Activa, pausa o da de alta tus cervezas. Lo que publiques aquí es lo que ve el cliente en la página de venta.</p>
+    <div><span class="etq dato" data-i18n="portal">Portal de cerveceros</span></div>
+    <h1 data-i18n="accTit">Tu catálogo en el TASTE</h1>
+    <p data-i18n="accSub">Activa, pausa o da de alta tus cervezas. Lo que publiques aquí es lo que ve el cliente en la página de venta.</p>
     <form class="form-acc" id="f-acceso" autocomplete="on" novalidate>
       <div class="error oculto" id="acc-error" role="alert"></div>
-      <label class="campo"><span>Usuario de tu cervecería</span>
-        <input id="acc-usu" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="ej. amante" required></label>
-      <label class="campo"><span>Contraseña</span>
+      <label class="campo"><span data-i18n="accUsu">Usuario de tu cervecería</span>
+        <input id="acc-usu" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-ph="accUsuPh" placeholder="ej. amante" required></label>
+      <label class="campo"><span data-i18n="accPass">Contraseña</span>
         <input id="acc-pass" name="password" type="password" autocomplete="current-password" required></label>
-      <button class="btn-oro" type="submit">Entrar al portal →</button>
+      <button class="btn-oro" type="submit" data-i18n="accEntrar">Entrar al portal →</button>
     </form>
     <details class="acc-demo" id="acc-demo">
-      <summary>Accesos de demostración</summary>
+      <summary data-i18n="accDemo">Accesos de demostración</summary>
       <div class="cont">
-        <p>Cada cervecería tiene su propio usuario. En este demo la contraseña de todas es <b class="mono" style="color:var(--oro)">cheve2026</b>. Toca una para llenar el acceso.</p>
+        <p data-i18n="accDemoTxt">Cada cervecería tiene su propio usuario. En este demo la contraseña de todas es <b class="mono" style="color:var(--oro)">cheve2026</b>. Toca una para llenar el acceso.</p>
         <div class="lista-usu" id="lista-usu"></div>
       </div>
     </details>
-    <p class="acc-pie">Acceso exclusivo para cervecerías aliadas de el TASTE.<br>¿Perdiste tu contraseña? Escríbenos por WhatsApp al 686 262 5119.</p>
+    <p class="acc-pie" data-i18n="accPie">Acceso exclusivo para cervecerías aliadas de el TASTE.<br>¿Perdiste tu contraseña? Escríbenos por WhatsApp al 686 262 5119.</p>
   </div>
 </main>
+
+<!-- ===================== ADMINISTRACIÓN ===================== -->
+<div id="admin" class="oculto">
+  <header class="barra">
+    <div class="env">
+      <span class="marca">
+        <span class="wm" role="img" aria-label="el TASTE"></span>
+        <span class="txt"><b>Cheve Retail</b><span data-i18n="administracion">administración</span></span>
+      </span>
+      <div class="der">
+        <div class="idioma" role="group" aria-label="Idioma / Language"><button data-lang="es">ES</button><button data-lang="en">EN</button></div>
+        <a class="b-link" href="https://eltastematters.github.io/cheve/#catalogo" target="_blank" rel="noopener">↗ <span class="largo" data-i18n="verVenta">Ver página de venta</span><span class="corto oculto" data-i18n="venta">Venta</span></a>
+        <button class="b-salir" onclick="salir()" data-i18n="salir">Salir</button>
+      </div>
+    </div>
+  </header>
+  <section class="cabeza">
+    <div class="env">
+      <span class="adm-escudo" aria-hidden="true">🍺</span>
+      <div>
+        <h1><span data-i18n="admTit">Todas las cervecerías</span><span class="rol">Admin</span></h1>
+        <div class="sub" data-i18n="admSub">Usuario <b>admin</b> · entra a cualquier cervecería para activar, pausar o dar de alta sus cervezas</div>
+      </div>
+      <div class="cifras">
+        <div class="cifra"><b id="a-cerv">0</b><span data-i18n="kCerv">Cervecerías</span></div>
+        <div class="cifra"><b id="a-venta">0</b><span data-i18n="kVenta">En venta</span></div>
+        <div class="cifra gris"><b id="a-pausa">0</b><span data-i18n="kPausa">Pausadas</span></div>
+        <div class="cifra alerta"><b id="a-agot">0</b><span data-i18n="kAgot">Sin existencia</span></div>
+      </div>
+    </div>
+  </section>
+  <main class="env">
+    <div class="herr">
+      <label class="buscar"><span aria-hidden="true">⌕</span><input id="aq" type="search" data-i18n-ph="admBuscar" placeholder="Buscar cervecería o ciudad" oninput="pintarAdmin()"></label>
+    </div>
+    <table class="tabla-adm">
+      <thead><tr><th data-i18n="thCerv">Cervecería</th><th style="text-align:center" data-i18n="kVenta">En venta</th><th style="text-align:center" data-i18n="kPausa">Pausadas</th><th style="text-align:center" data-i18n="thAgot">Sin exist.</th><th data-i18n="thUlt">Último cambio</th><th></th></tr></thead>
+      <tbody id="a-filas"></tbody>
+    </table>
+  </main>
+  <section class="hist">
+    <div class="env">
+      <div class="cab"><h2 data-i18n="admHist">Historial de todas</h2><p data-i18n="admHistSub">Los últimos cambios publicados por las cervecerías y por el TASTE.</p></div>
+      <ol id="a-hist"></ol>
+    </div>
+  </section>
+  <footer class="pie env"><span class="pie-demo2"><span data-i18n="pieDemo2">Demo · los cambios se guardan en este navegador.</span> <button onclick="reiniciarDemo()" data-i18n="reiniciar">Reiniciar demo</button></span></footer>
+</div>
 
 <!-- ===================== PANEL ===================== -->
 <div id="panel" class="oculto">
@@ -310,15 +399,20 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
     <div class="env">
       <span class="marca">
         <span class="wm" role="img" aria-label="el TASTE"></span>
-        <span class="txt"><b>Cheve Retail</b><span>portal de cerveceros</span></span>
+        <span class="txt"><b>Cheve Retail</b><span data-i18n="portalMin">portal de cerveceros</span></span>
       </span>
       <div class="der">
-        <a class="b-link" id="ver-venta" href="https://eltastematters.github.io/cheve/#catalogo" target="_blank" rel="noopener">↗ <span class="largo">Ver página de venta</span><span class="corto oculto">Venta</span></a>
-        <button class="b-salir" onclick="salir()">Salir</button>
+        <div class="idioma" role="group" aria-label="Idioma / Language"><button data-lang="es">ES</button><button data-lang="en">EN</button></div>
+        <a class="b-link" id="ver-venta" href="https://eltastematters.github.io/cheve/#catalogo" target="_blank" rel="noopener">↗ <span class="largo" data-i18n="verVenta">Ver página de venta</span><span class="corto oculto" data-i18n="venta">Venta</span></a>
+        <button class="b-salir" onclick="salir()" data-i18n="salir">Salir</button>
       </div>
     </div>
   </header>
 
+  <div class="banda-adm oculto" id="banda-adm"><div class="env">
+    <span data-i18n="banda">🔑 Estás administrando esta cervecería como el TASTE. Lo que publiques queda registrado a nombre de el TASTE.</span>
+    <button onclick="volverAdmin()" data-i18n="volver">← Todas las cervecerías</button>
+  </div></div>
   <section class="cabeza">
     <div class="env">
       <span id="c-escudo"></span>
@@ -327,27 +421,27 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
         <div class="sub" id="c-sub"></div>
       </div>
       <div class="cifras">
-        <div class="cifra"><b id="k-venta">0</b><span>En venta</span></div>
-        <div class="cifra gris"><b id="k-pausa">0</b><span>Pausadas</span></div>
-        <div class="cifra alerta"><b id="k-agot">0</b><span>Sin existencia</span></div>
-        <div class="cifra gris"><b id="k-cajas">0</b><span>Cajas listas</span></div>
+        <div class="cifra"><b id="k-venta">0</b><span data-i18n="kVenta">En venta</span></div>
+        <div class="cifra gris"><b id="k-pausa">0</b><span data-i18n="kPausa">Pausadas</span></div>
+        <div class="cifra alerta"><b id="k-agot">0</b><span data-i18n="kAgot">Sin existencia</span></div>
+        <div class="cifra gris"><b id="k-cajas">0</b><span data-i18n="kCajas">Cajas listas</span></div>
       </div>
     </div>
   </section>
 
   <main class="env">
     <div class="herr">
-      <label class="buscar"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Buscar en tus cervezas" oninput="pintar()"></label>
-      <div class="tabs" role="group" aria-label="Filtrar">
-        <button data-f="todas" aria-pressed="true" onclick="filtrar('todas')">Todas<span id="n-todas"></span></button>
-        <button data-f="venta" aria-pressed="false" onclick="filtrar('venta')">En venta<span id="n-venta"></span></button>
-        <button data-f="pausa" aria-pressed="false" onclick="filtrar('pausa')">Pausadas<span id="n-pausa"></span></button>
+      <label class="buscar"><span aria-hidden="true">⌕</span><input id="q" type="search" data-i18n-ph="buscar" placeholder="Buscar en tus cervezas" oninput="pintar()"></label>
+      <div class="tabs" role="group" data-i18n-aria="filtrar" aria-label="Filtrar">
+        <button data-f="todas" aria-pressed="true" onclick="filtrar('todas')"><span data-i18n="fTodas">Todas</span><span id="n-todas"></span></button>
+        <button data-f="venta" aria-pressed="false" onclick="filtrar('venta')"><span data-i18n="kVenta">En venta</span><span id="n-venta"></span></button>
+        <button data-f="pausa" aria-pressed="false" onclick="filtrar('pausa')"><span data-i18n="kPausa">Pausadas</span><span id="n-pausa"></span></button>
       </div>
-      <button class="btn-oro" onclick="abrirEditor()" style="border:2px solid var(--tinta)">＋ Nueva cerveza</button>
+      <button class="btn-oro" onclick="abrirEditor()" style="border:2px solid var(--tinta)" data-i18n="nueva">＋ Nueva cerveza</button>
     </div>
 
     <div class="aviso"><span aria-hidden="true">💡</span>
-      <div><b>El interruptor decide si la cerveza aparece en la página de venta.</b> Pausar no la borra: conserva su historial y la reactivas cuando vuelvas a tener. Si la dejas activa con 0 cajas, sale como <b>Agotada</b>. Nada cambia en la página hasta que tocas <b>Publicar</b>.</div>
+      <div data-i18n="aviso"><b>El interruptor decide si la cerveza aparece en la página de venta.</b> Pausar no la borra: conserva su historial y la reactivas cuando vuelvas a tener. Si la dejas activa con 0 cajas, sale como <b>Agotada</b>. Nada cambia en la página hasta que tocas <b>Publicar</b>.</div>
     </div>
 
     <div class="rejilla" id="rejilla"></div>
@@ -355,59 +449,62 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 
   <section class="hist">
     <div class="env">
-      <div class="cab"><h2>Historial de cambios</h2><p>Lo que tu cervecería ha publicado desde este portal.</p></div>
+      <div class="cab"><h2 data-i18n="histTit">Historial de cambios</h2><p data-i18n="histSub">Lo que tu cervecería ha publicado desde este portal.</p></div>
       <ol id="hist"></ol>
     </div>
   </section>
   <footer class="pie env">
-    el TASTE no compra, no almacena y no cobra tu cerveza: el cliente te paga directo a tu cuenta.<br>
-    <span id="pie-demo">Demo · los cambios se guardan en este navegador y se ven en la página de venta abierta en el mismo navegador.
-    <button onclick="reiniciarDemo()">Reiniciar demo</button></span>
+    <span data-i18n="pie">el TASTE no compra, no almacena y no cobra tu cerveza: el cliente te paga directo a tu cuenta.</span><br>
+    <span id="pie-demo"><span data-i18n="pieDemo">Demo · los cambios se guardan en este navegador y se ven en la página de venta abierta en el mismo navegador.</span>
+    <button onclick="reiniciarDemo()" data-i18n="reiniciar">Reiniciar demo</button></span>
   </footer>
 </div>
 
 <!-- barra de publicar -->
 <div id="pub" role="status" aria-live="polite">
-  <span class="n"><span id="pub-n">0</span> cambios sin publicar</span>
-  <button class="b-desc" onclick="descartar()">Descartar</button>
-  <button class="btn-oro" onclick="publicar()">Publicar<span class="largo"> en la página</span></button>
+  <span class="n" id="pub-txt"></span>
+  <button class="b-desc" onclick="descartar()" data-i18n="descartar">Descartar</button>
+  <button class="btn-oro" onclick="publicar()"><span data-i18n="publicar">Publicar</span><span class="largo" data-i18n="enLaPagina"> en la página</span></button>
 </div>
 
 <!-- editor -->
 <div class="modal" id="m-editor" role="dialog" aria-modal="true" aria-labelledby="ed-tit">
   <div class="m-caja">
-    <div class="m-cab"><h2 id="ed-tit">Nueva cerveza</h2><button class="m-x" onclick="cerrarEditor()" aria-label="Cerrar">✕</button></div>
+    <div class="m-cab"><h2 id="ed-tit"></h2><button class="m-x" onclick="cerrarEditor()" data-i18n-aria="cerrar" aria-label="Cerrar">✕</button></div>
     <form id="f-ed" novalidate>
       <div class="m-cuerpo">
         <div class="m-form">
           <div class="error oculto ancho" id="ed-error" role="alert"></div>
-          <label class="campo ancho"><span>Nombre de la cerveza</span><input id="ed-n" maxlength="40" required placeholder="ej. Hazy del Valle"></label>
-          <label class="campo ancho"><span>Estilo</span><select id="ed-estilo"></select></label>
+          <label class="campo ancho"><span data-i18n="edNombre">Nombre de la cerveza</span><input id="ed-n" maxlength="40" required data-i18n-ph="edNombrePh" placeholder="ej. Hazy del Valle"></label>
+          <label class="campo ancho"><span data-i18n="edEstilo">Estilo</span>
+            <input id="ed-estilo" list="lista-estilos" maxlength="30" autocomplete="off" data-i18n-ph="edEstiloPh" placeholder="ej. Hazy IPA, Mexican Lager, Sour de guayaba">
+            <datalist id="lista-estilos"></datalist>
+            <small data-i18n="edEstiloAyuda">Escríbelo como lo llamas tú, o elige uno de la lista.</small></label>
           <label class="campo"><span>ABV (%)</span><input id="ed-abv" type="number" step="0.1" min="0" max="20" inputmode="decimal"></label>
           <label class="campo"><span>IBU</span><input id="ed-ibu" type="number" step="1" min="0" max="150" inputmode="numeric"></label>
-          <div class="campo"><span>Envase</span>
-            <div class="seg"><label><input type="radio" name="ed-env" value="lata" checked><span>🥫 Lata</span></label><label><input type="radio" name="ed-env" value="botella"><span>🍾 Botella</span></label></div></div>
-          <label class="campo"><span>Contenido</span><select id="ed-ml"></select></label>
-          <div class="campo"><span>Piezas por caja</span>
+          <div class="campo"><span data-i18n="edEnvase">Envase</span>
+            <div class="seg"><label><input type="radio" name="ed-env" value="lata" checked><span data-i18n="lataIco">🥫 Lata</span></label><label><input type="radio" name="ed-env" value="botella"><span data-i18n="botellaIco">🍾 Botella</span></label></div></div>
+          <label class="campo"><span data-i18n="edContenido">Contenido</span><select id="ed-ml"></select></label>
+          <div class="campo"><span data-i18n="edPiezas">Piezas por caja</span>
             <div class="seg"><label><input type="radio" name="ed-pz" value="12" checked><span>12</span></label><label><input type="radio" name="ed-pz" value="24"><span>24</span></label></div></div>
-          <label class="campo"><span>Cajas disponibles</span><input id="ed-stock" type="number" step="1" min="0" max="999" inputmode="numeric"></label>
-          <label class="campo ancho"><span>Lo que recibes por pieza</span>
+          <label class="campo"><span data-i18n="edCajas">Cajas disponibles</span><input id="ed-stock" type="number" step="1" min="0" max="999" inputmode="numeric"></label>
+          <label class="campo ancho"><span data-i18n="edRecibes">Lo que recibes por pieza</span>
             <div class="pesos"><input id="ed-precio" type="number" step="1" min="1" max="999" inputmode="numeric"></div>
-            <small>Es lo que se deposita a tu cuenta por cada lata o botella. La cuota de el TASTE se suma encima para el precio al público.</small></label>
+            <small data-i18n="edRecibesAyuda">Es lo que se deposita a tu cuenta por cada lata o botella. La cuota de el TASTE se suma encima para el precio al público.</small></label>
           <div class="campo ancho" style="margin-bottom:0">
-            <label class="sw"><input type="checkbox" id="ed-activo" checked><span class="riel"></span><span>Publicar en venta al guardar</span></label>
+            <label class="sw"><input type="checkbox" id="ed-activo" checked><span class="riel"></span><span data-i18n="edActivo">Publicar en venta al guardar</span></label>
           </div>
         </div>
         <div class="previa">
-          <span class="dato">Así se verá en la página</span>
+          <span class="dato" data-i18n="edPrevia">Así se verá en la página</span>
           <div id="ed-previa"></div>
           <div class="desg" id="ed-desg"></div>
         </div>
       </div>
       <div class="m-pie">
-        <span class="izq" id="ed-nota">El SKU se genera solo. El cambio queda pendiente hasta que publiques.</span>
-        <button type="button" class="btn-linea" onclick="cerrarEditor()">Cancelar</button>
-        <button type="submit" class="btn-oro" style="border:2px solid var(--tinta)" id="ed-ok">Guardar</button>
+        <span class="izq" id="ed-nota"></span>
+        <button type="button" class="btn-linea" onclick="cerrarEditor()" data-i18n="cancelar">Cancelar</button>
+        <button type="submit" class="btn-oro" style="border:2px solid var(--tinta)" id="ed-ok"></button>
       </div>
     </form>
   </div>
@@ -417,10 +514,10 @@ input,select,textarea{font-family:inherit;font-size:16px;color:inherit}
 
 <script>
 /* =========================================================================
-   el TASTE · Portal de cerveceros (demo)
-   Cada cervecería entra con su usuario y administra solo sus cervezas.
-   Al publicar, los cambios se guardan en "elTASTE.portal.v1"; la página de venta
-   (mismo dominio) los lee al cargar y los aplica al catálogo.
+   el TASTE · Portal de cerveceros (demo) · español / English
+   Cada cervecería entra con su usuario y administra solo sus cervezas; el usuario
+   admin ve todas. Al publicar, los cambios se guardan en "elTASTE.portal.v1"; la página
+   de venta (mismo dominio) los lee al cargar y los aplica al catálogo.
    Versión real: el acceso y el guardado los valida el servidor (Apps Script + Sheet).
    ========================================================================= */
 
@@ -527,10 +624,143 @@ const CON_LOGO = new Set(["amante"]);
 
 const CLAVE = "elTASTE.portal.v1";
 const SESION = "elTASTE.portal.sesion";
+const CLAVE_IDIOMA = "elTASTE.portal.idioma";
 const PASS_DEMO = "cheve2026";
+const USU_ADMIN = "admin";
+const PASS_ADMIN_DEMO = "taste2026";
 /* MODO_DEMO = true muestra los accesos de prueba y el botón de reinicio.
    Con datos reales: poner false; usuarios y contraseñas los valida el servidor. */
 const MODO_DEMO = true;
+
+/* ---------- textos ---------- */
+const T = {
+es: {
+  portal:"Portal de cerveceros", portalMin:"portal de cerveceros", administracion:"administración",
+  accTit:"Tu catálogo en el TASTE",
+  accSub:"Activa, pausa o da de alta tus cervezas. Lo que publiques aquí es lo que ve el cliente en la página de venta.",
+  accUsu:"Usuario de tu cervecería", accUsuPh:"ej. amante", accPass:"Contraseña", accEntrar:"Entrar al portal →",
+  accDemo:"Accesos de demostración",
+  accDemoTxt:'Cada cervecería tiene su propio usuario. En este demo la contraseña de todas es <b class="mono" style="color:var(--oro)">cheve2026</b>. Toca una para llenar el acceso.',
+  accAdmin:"Administración el TASTE · contraseña {p}",
+  accPie:"Acceso exclusivo para cervecerías aliadas de el TASTE.<br>¿Perdiste tu contraseña? Escríbenos por WhatsApp al 686 262 5119.",
+  errVacio:"Escribe tu usuario y tu contraseña.", errMal:"Usuario o contraseña incorrectos.",
+  verVenta:"Ver página de venta", venta:"Venta", salir:"Salir",
+  admTit:"Todas las cervecerías",
+  admSub:"Usuario <b>admin</b> · entra a cualquier cervecería para activar, pausar o dar de alta sus cervezas",
+  kCerv:"Cervecerías", kVenta:"En venta", kPausa:"Pausadas", kAgot:"Sin existencia", kCajas:"Cajas listas",
+  admBuscar:"Buscar cervecería o ciudad", thCerv:"Cervecería", thAgot:"Sin exist.", thUlt:"Último cambio",
+  admHist:"Historial de todas", admHistSub:"Los últimos cambios publicados por las cervecerías y por el TASTE.",
+  admNinguna:"Ninguna cervecería coincide con la búsqueda.", admSinCambios:"Sin cambios publicados",
+  admNadie:"Todavía nadie publica cambios.", administrar:"Administrar →", usuario:"usuario",
+  pieDemo2:"Demo · los cambios se guardan en este navegador.", reiniciar:"Reiniciar demo",
+  banda:"🔑 Estás administrando esta cervecería como el TASTE. Lo que publiques queda registrado a nombre de el TASTE.",
+  volver:"← Todas las cervecerías",
+  subCerv:"{c} · usuario <b>{u}</b> · cobras en {mp}", subCervAdm:"{c} · usuario <b>{u}</b> · cobra en {mp}",
+  buscar:"Buscar en tus cervezas", filtrar:"Filtrar", fTodas:"Todas", nueva:"＋ Nueva cerveza",
+  aviso:"<b>El interruptor decide si la cerveza aparece en la página de venta.</b> Pausar no la borra: conserva su historial y la reactivas cuando vuelvas a tener. Si la dejas activa con 0 cajas, sale como <b>Agotada</b>. Nada cambia en la página hasta que tocas <b>Publicar</b>.",
+  histTit:"Historial de cambios", histSub:"Lo que tu cervecería ha publicado desde este portal.",
+  histVacio:"Aún no publicas cambios. Cuando lo hagas, quedan registrados aquí.",
+  pie:"el TASTE no compra, no almacena y no cobra tu cerveza: el cliente te paga directo a tu cuenta.",
+  pieDemo:"Demo · los cambios se guardan en este navegador y se ven en la página de venta abierta en el mismo navegador.",
+  pend1:"<span>1</span> cambio sin publicar", pendN:"<span>{n}</span> cambios sin publicar",
+  descartar:"Descartar", publicar:"Publicar", enLaPagina:" en la página",
+  vacioFiltro:"Nada con ese filtro", vacioFiltroTxt:"Prueba con otra pestaña o borra la búsqueda.",
+  vacioNada:"Todavía no tienes cervezas", vacioNadaTxt:"Da de alta la primera con “＋ Nueva cerveza”.",
+  pNueva:"Nueva", pAgot:"Agotada", pSinPub:"Sin publicar",
+  recibes:"Recibes", recibe:"Recibe", porPieza:"{p} por pieza", precioPub:"Precio al público", porCaja:"por caja de {n}",
+  enVenta:"En venta", pausada:"Pausada", editar:"Editar", cajas:"Cajas", cajasDisp:"Cajas disponibles",
+  cajaMenos:"Una caja menos", cajaMas:"Una caja más", cajasDe:"Cajas disponibles de {n}", enVentaDe:"En venta: {n}",
+  tEnVenta:"Queda en venta al publicar", tPausada:"Queda pausada al publicar",
+  tPub1:"Publicado · ya se ve en la página de venta", tPubN:"{n} cambios publicados · ya se ven en la página",
+  tNoGuarda:"No se pudo guardar en este navegador (¿modo privado?)", tDescartados:"Cambios descartados",
+  tReinicio:"Demo reiniciado: catálogo original",
+  tPendSalir:"Tienes cambios sin publicar. Toca Salir otra vez para descartarlos.",
+  tPendVolver:"Tienes cambios sin publicar. Toca “Todas las cervecerías” otra vez para descartarlos.",
+  tListos:"Cambios listos · toca Publicar", tAgregada:"Cerveza agregada · toca Publicar para que salga en la página",
+  hAlta:"Alta de <b>{n}</b> ({pz} × {ml} ml, {env}) · {est}", hEnVenta:"en venta", hPausada:"pausada", hReactivada:"reactivada",
+  hStock:"existencia {a} → {b} cajas", hPrecio:"precio al público {a} → {b}", hFicha:"ficha actualizada", hPorTaste:"por el TASTE",
+  lata:"lata", botella:"botella", lataIco:"🥫 Lata", botellaIco:"🍾 Botella",
+  edNueva:"Nueva cerveza", edEditar:"Editar cerveza", edAgregar:"Agregar cerveza", edGuardar:"Guardar cambios",
+  edNotaNueva:"El SKU se genera solo. Queda pendiente hasta que publiques.", edNotaEditar:"SKU {s}. El cambio queda pendiente hasta que publiques.",
+  cerrar:"Cerrar", edNombre:"Nombre de la cerveza", edNombrePh:"ej. Hazy del Valle",
+  edEstilo:"Estilo", edEstiloPh:"ej. Hazy IPA, Mexican Lager, Sour de guayaba", edEstiloAyuda:"Escríbelo como lo llamas tú, o elige uno de la lista.",
+  edEnvase:"Envase", edContenido:"Contenido", edPiezas:"Piezas por caja", edCajas:"Cajas disponibles",
+  edRecibes:"Lo que recibes por pieza",
+  edRecibesAyuda:"Es lo que se deposita a tu cuenta por cada lata o botella. La cuota de el TASTE se suma encima para el precio al público.",
+  edActivo:"Publicar en venta al guardar", edPrevia:"Así se verá en la página", cancelar:"Cancelar",
+  pvNombre:"Nombre de tu cerveza", pvCajas:"<b>{n}</b> cajas", pvCaja:"caja de {n} · {p} c/u",
+  dRecibes:"Recibes por pieza", dCuota:"Cuota el TASTE por pieza", dPub:"Precio al público por pieza", dDeposito:"Se deposita a tu cuenta por caja",
+  dVacio:"Escribe lo que recibes por pieza para ver el precio.",
+  eNombre:"Ponle nombre a la cerveza.", eEstilo:"Escribe el estilo de la cerveza.", eAbv:"Revisa el ABV (entre 0.1 y 20%).",
+  ePrecio:"Escribe lo que recibes por pieza (mínimo $10).", eDup:"Ya tienes esa cerveza en esa presentación.",
+  tituloPortal:"Portal de cerveceros · el TASTE", tituloAdmin:"Administración · Portal de cerveceros · el TASTE"
+},
+en: {
+  portal:"Brewery portal", portalMin:"brewery portal", administracion:"admin",
+  accTit:"Your catalog on el TASTE",
+  accSub:"Activate, pause or add your beers. What you publish here is what customers see on the store.",
+  accUsu:"Your brewery's username", accUsuPh:"e.g. amante", accPass:"Password", accEntrar:"Sign in →",
+  accDemo:"Demo logins",
+  accDemoTxt:'Each brewery has its own username. In this demo every password is <b class="mono" style="color:var(--oro)">cheve2026</b>. Tap one to fill in the login.',
+  accAdmin:"el TASTE admin · password {p}",
+  accPie:"For el TASTE partner breweries only.<br>Lost your password? Message us on WhatsApp at +52 686 262 5119.",
+  errVacio:"Enter your username and password.", errMal:"Wrong username or password.",
+  verVenta:"View store", venta:"Store", salir:"Sign out",
+  admTit:"All breweries",
+  admSub:"User <b>admin</b> · open any brewery to activate, pause or add its beers",
+  kCerv:"Breweries", kVenta:"On sale", kPausa:"Paused", kAgot:"Out of stock", kCajas:"Cases ready",
+  admBuscar:"Search brewery or city", thCerv:"Brewery", thAgot:"Out of stock", thUlt:"Last change",
+  admHist:"All activity", admHistSub:"Latest changes published by the breweries and by el TASTE.",
+  admNinguna:"No brewery matches your search.", admSinCambios:"No changes published",
+  admNadie:"Nobody has published changes yet.", administrar:"Manage →", usuario:"user",
+  pieDemo2:"Demo · changes are saved in this browser.", reiniciar:"Reset demo",
+  banda:"🔑 You're managing this brewery as el TASTE. Anything you publish is logged under el TASTE.",
+  volver:"← All breweries",
+  subCerv:"{c} · user <b>{u}</b> · you get paid at {mp}", subCervAdm:"{c} · user <b>{u}</b> · gets paid at {mp}",
+  buscar:"Search your beers", filtrar:"Filter", fTodas:"All", nueva:"＋ New beer",
+  aviso:"<b>The switch decides whether a beer shows up on the store.</b> Pausing doesn't delete it: its history is kept and you can turn it back on when you have stock again. If it stays on with 0 cases, it shows as <b>Sold out</b>. Nothing changes on the store until you tap <b>Publish</b>.",
+  histTit:"Change history", histSub:"What your brewery has published from this portal.",
+  histVacio:"You haven't published anything yet. When you do, it's logged here.",
+  pie:"el TASTE doesn't buy, store or collect payment for your beer: customers pay straight into your account.",
+  pieDemo:"Demo · changes are saved in this browser and show up on the store opened in the same browser.",
+  pend1:"<span>1</span> unpublished change", pendN:"<span>{n}</span> unpublished changes",
+  descartar:"Discard", publicar:"Publish", enLaPagina:" to store",
+  vacioFiltro:"Nothing matches that filter", vacioFiltroTxt:"Try another tab or clear the search.",
+  vacioNada:"You don't have any beers yet", vacioNadaTxt:"Add your first one with “＋ New beer”.",
+  pNueva:"New", pAgot:"Sold out", pSinPub:"Unpublished",
+  recibes:"You get", recibe:"Brewery gets", porPieza:"{p} per unit", precioPub:"Store price", porCaja:"per case of {n}",
+  enVenta:"On sale", pausada:"Paused", editar:"Edit", cajas:"Cases", cajasDisp:"Cases available",
+  cajaMenos:"One case less", cajaMas:"One case more", cajasDe:"Cases available of {n}", enVentaDe:"On sale: {n}",
+  tEnVenta:"Will be on sale when you publish", tPausada:"Will be paused when you publish",
+  tPub1:"Published · now live on the store", tPubN:"{n} changes published · now live on the store",
+  tNoGuarda:"Couldn't save in this browser (private mode?)", tDescartados:"Changes discarded",
+  tReinicio:"Demo reset: original catalog",
+  tPendSalir:"You have unpublished changes. Tap Sign out again to discard them.",
+  tPendVolver:"You have unpublished changes. Tap “All breweries” again to discard them.",
+  tListos:"Changes ready · tap Publish", tAgregada:"Beer added · tap Publish to put it on the store",
+  hAlta:"Added <b>{n}</b> ({pz} × {ml} ml, {env}) · {est}", hEnVenta:"on sale", hPausada:"paused", hReactivada:"back on sale",
+  hStock:"stock {a} → {b} cases", hPrecio:"store price {a} → {b}", hFicha:"details updated", hPorTaste:"by el TASTE",
+  lata:"can", botella:"bottle", lataIco:"🥫 Can", botellaIco:"🍾 Bottle",
+  edNueva:"New beer", edEditar:"Edit beer", edAgregar:"Add beer", edGuardar:"Save changes",
+  edNotaNueva:"The SKU is created automatically. It stays pending until you publish.", edNotaEditar:"SKU {s}. The change stays pending until you publish.",
+  cerrar:"Close", edNombre:"Beer name", edNombrePh:"e.g. Valley Hazy",
+  edEstilo:"Style", edEstiloPh:"e.g. Hazy IPA, Mexican Lager, Guava Sour", edEstiloAyuda:"Type it the way you call it, or pick one from the list.",
+  edEnvase:"Package", edContenido:"Size", edPiezas:"Units per case", edCajas:"Cases available",
+  edRecibes:"What you get per unit",
+  edRecibesAyuda:"This is what gets deposited to your account for each can or bottle. el TASTE's fee is added on top to make the store price.",
+  edActivo:"Put on sale when saved", edPrevia:"How it will look on the store", cancelar:"Cancel",
+  pvNombre:"Your beer's name", pvCajas:"<b>{n}</b> cases", pvCaja:"case of {n} · {p} each",
+  dRecibes:"You get per unit", dCuota:"el TASTE fee per unit", dPub:"Store price per unit", dDeposito:"Deposited to you per case",
+  dVacio:"Enter what you get per unit to see the price.",
+  eNombre:"Give the beer a name.", eEstilo:"Enter the beer's style.", eAbv:"Check the ABV (between 0.1 and 20%).",
+  ePrecio:"Enter what you get per unit (minimum $10).", eDup:"You already have that beer in that size.",
+  tituloPortal:"Brewery portal · el TASTE", tituloAdmin:"Admin · Brewery portal · el TASTE"
+}};
+let idioma = "es";
+try { idioma = localStorage.getItem(CLAVE_IDIOMA) || "es"; } catch(_){}   /* español por omisión; EN con el selector */
+if (!T[idioma]) idioma = "es";
+const t = (k, v) => { let s = (T[idioma][k] ?? T.es[k] ?? k); if (v) for (const [a, b] of Object.entries(v)) s = s.split("{" + a + "}").join(b); return s; };
+const loc = () => idioma === "en" ? "en-US" : "es-MX";
 
 /* ---------- cuota el TASTE por pieza (escalones de la carta a cervecerías) ---------- */
 const cuota = b => b <= 40 ? 6 : b <= 65 ? 8 : b <= 100 ? 10 : 14;
@@ -544,7 +774,9 @@ const basePorCaja = (b, piezas) => (b + cuota(b)) * piezas;
 const pesos = n => "$" + Math.round(n).toLocaleString("es-MX");
 const col = e => COLOR[e] || "#9A8F84";
 const cervDe = id => CERVECERIAS.find(c => c.id === id);
-const esc = t => String(t ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const sinAcentos = s => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").trim().toLowerCase();
+const envTxt = e => t(e === "lata" ? "lata" : "botella");
 function iniciales(n){
   const w = n.replace(/Cervecer[ií]a|Brewing|Brew|Company|Co\.|it's|de|la|el/gi," ").trim().split(/\s+/).filter(Boolean);
   return (w.length >= 2 ? w[0][0] + w[1][0] : (w[0]||"?").slice(0,2)).toUpperCase();
@@ -565,10 +797,31 @@ function siluetaHTML(envase){
 }
 let tT;
 function tostada(msg, ico){
-  const t = document.getElementById("tostada");
-  t.innerHTML = (ico || "✓") + " " + msg; t.classList.add("on");
-  clearTimeout(tT); tT = setTimeout(() => t.classList.remove("on"), 2800);
+  const el = document.getElementById("tostada");
+  el.innerHTML = (ico || "✓") + " " + msg; el.classList.add("on");
+  clearTimeout(tT); tT = setTimeout(() => el.classList.remove("on"), 2800);
 }
+
+/* ---------- idioma ---------- */
+function aplicarIdioma(){
+  document.documentElement.lang = idioma;
+  document.querySelectorAll("[data-i18n]").forEach(el => el.innerHTML = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+  document.querySelectorAll(".idioma button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === idioma));
+  if (MODO_DEMO) pintarUsuarios();
+  const err = document.getElementById("acc-error"); if (err.dataset.k) err.textContent = t(err.dataset.k);
+  if (!document.getElementById("admin").classList.contains("oculto")){ pintarAdmin(); document.title = t("tituloAdmin"); }
+  else if (yo){ pintarCabeza(); pintar(); pintarHist(); }
+  else document.title = t("tituloPortal");
+  if (document.getElementById("m-editor").classList.contains("on")){ textosEditor(); llenarML(parseInt(document.getElementById("ed-ml").value, 10)); previa(); }
+}
+function cambiarIdioma(l){
+  idioma = l;
+  try { localStorage.setItem(CLAVE_IDIOMA, l); } catch(_){}
+  aplicarIdioma();
+}
+document.querySelectorAll(".idioma button").forEach(b => b.addEventListener("click", () => cambiarIdioma(b.dataset.lang)));
 
 /* ---------- almacenamiento ---------- */
 function leer(){
@@ -593,7 +846,8 @@ function catalogoPublicado(cid){
 }
 
 /* ---------- estado ---------- */
-let yo = null;             // cervecería con sesión
+let yo = null;             // cervecería abierta
+let esAdmin = false;       // sesión de administración
 let publicado = [];        // lo que está en la página
 let borrador = [];         // lo que se está editando
 let filtro = "todas";
@@ -608,57 +862,133 @@ function cambiosPendientes(){
 
 /* ---------- acceso ---------- */
 function pintarUsuarios(){
-  document.getElementById("lista-usu").innerHTML = CERVECERIAS.map(c =>
-    `<button type="button" onclick="llenarAcceso('${c.id}')"><b>${c.id}</b>${esc(c.n)}</button>`).join("");
+  document.getElementById("lista-usu").innerHTML =
+    `<button type="button" onclick="llenarAcceso('${USU_ADMIN}')" style="grid-column:1/-1;background:rgba(242,181,24,.18)"><b>${USU_ADMIN}</b>${t("accAdmin", {p: PASS_ADMIN_DEMO})}</button>` +
+    CERVECERIAS.map(c => `<button type="button" onclick="llenarAcceso('${c.id}')"><b>${c.id}</b>${esc(c.n)}</button>`).join("");
 }
 function llenarAcceso(id){
   document.getElementById("acc-usu").value = id;
-  document.getElementById("acc-pass").value = PASS_DEMO;
+  document.getElementById("acc-pass").value = id === USU_ADMIN ? PASS_ADMIN_DEMO : PASS_DEMO;
   document.getElementById("acc-pass").focus();
+}
+function errorAcceso(k){
+  const err = document.getElementById("acc-error");
+  if (!k){ err.classList.add("oculto"); delete err.dataset.k; return; }
+  err.dataset.k = k; err.textContent = t(k); err.classList.remove("oculto");
 }
 document.getElementById("f-acceso").addEventListener("submit", e => {
   e.preventDefault();
   const u = document.getElementById("acc-usu").value.trim().toLowerCase();
   const p = document.getElementById("acc-pass").value;
-  const err = document.getElementById("acc-error");
+  if (!u || !p) return errorAcceso("errVacio");
+  if (u === USU_ADMIN){
+    if (p !== PASS_ADMIN_DEMO) return errorAcceso("errMal");
+    errorAcceso(null);
+    try { sessionStorage.setItem(SESION, USU_ADMIN); } catch(_){}
+    esAdmin = true; abrirAdmin(); return;
+  }
   const cv = cervDe(u);
-  if (!u || !p){ err.textContent = "Escribe tu usuario y tu contraseña."; err.classList.remove("oculto"); return; }
-  if (!cv || p !== PASS_DEMO){ err.textContent = "Usuario o contraseña incorrectos."; err.classList.remove("oculto"); return; }
-  err.classList.add("oculto");
+  if (!cv || p !== PASS_DEMO) return errorAcceso("errMal");
+  errorAcceso(null);
   try { sessionStorage.setItem(SESION, cv.id); } catch(_){}
-  entrar(cv.id);
+  esAdmin = false; entrar(cv.id);
 });
+function pintarCabeza(){
+  document.getElementById("c-escudo").innerHTML = escudoHTML(yo, 72);
+  document.getElementById("c-nombre").textContent = yo.n;
+  document.getElementById("c-sub").innerHTML = t(esAdmin ? "subCervAdm" : "subCerv", {c: esc(yo.ciudad), u: yo.id, mp: esc(yo.mp)});
+  document.title = yo.n + (esAdmin ? " · Admin" : "") + " · " + t("tituloPortal");
+}
 function entrar(id){
   yo = cervDe(id);
   publicado = catalogoPublicado(id);
   borrador = clon(publicado);
   document.getElementById("acceso").classList.add("oculto");
+  document.getElementById("admin").classList.add("oculto");
   document.getElementById("panel").classList.remove("oculto");
-  document.getElementById("c-escudo").innerHTML = escudoHTML(yo, 72);
-  document.getElementById("c-nombre").textContent = yo.n;
-  document.getElementById("c-sub").innerHTML = `${esc(yo.ciudad)} · usuario <b>${yo.id}</b> · cobras en ${esc(yo.mp)}`;
-  document.title = yo.n + " · Portal de cerveceros · el TASTE";
-  document.getElementById("ver-venta").href = "https://eltastematters.github.io/cheve/#catalogo";
+  document.getElementById("banda-adm").classList.toggle("oculto", !esAdmin);
+  pintarCabeza();
   filtrar("todas");
   pintarHist();
   window.scrollTo(0,0);
 }
 function salir(){
-  if (cambiosPendientes().length && !confirmarSalida()) return;
+  if (cambiosPendientes().length && !confirmarSalida("tPendSalir")) return;
   try { sessionStorage.removeItem(SESION); } catch(_){}
-  yo = null;
+  yo = null; esAdmin = false; publicado = []; borrador = [];
   document.getElementById("panel").classList.add("oculto");
+  document.getElementById("admin").classList.add("oculto");
   document.getElementById("acceso").classList.remove("oculto");
   document.getElementById("pub").classList.remove("on");
   document.getElementById("acc-pass").value = "";
-  document.title = "Portal de cerveceros · el TASTE";
+  document.title = t("tituloPortal");
 }
 let avisoSalida = false;
-function confirmarSalida(){
+function confirmarSalida(k){
   if (avisoSalida) return true;
   avisoSalida = true; setTimeout(() => avisoSalida = false, 4000);
-  tostada("Tienes cambios sin publicar. Toca Salir otra vez para descartarlos.", "!");
+  tostada(t(k), "!");
   return false;
+}
+
+/* ---------- administración ---------- */
+function abrirAdmin(){
+  yo = null; publicado = []; borrador = [];
+  document.getElementById("acceso").classList.add("oculto");
+  document.getElementById("panel").classList.add("oculto");
+  document.getElementById("admin").classList.remove("oculto");
+  document.getElementById("pub").classList.remove("on");
+  document.title = t("tituloAdmin");
+  pintarAdmin(); window.scrollTo(0,0);
+}
+function volverAdmin(){
+  if (cambiosPendientes().length && !confirmarSalida("tPendVolver")) return;
+  abrirAdmin();
+}
+function administrar(id){ entrar(id); }
+const fechaCorta = s => new Date(s).toLocaleString(loc(), {day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit"});
+
+/* historial: se guarda estructurado y se escribe en el idioma de quien lo lee */
+function histTexto(x){
+  let s;
+  if (x.txt) s = x.txt;                                   // registros viejos, texto fijo
+  else if (x.tipo === "alta") s = t("hAlta", {n: esc(x.n), pz: x.pz, ml: x.ml, env: envTxt(x.env), est: t(x.act ? "hEnVenta" : "hPausada")});
+  else {
+    const c = [];
+    if ("activo" in x.d) c.push(t(x.d.activo ? "hReactivada" : "hPausada"));
+    if (x.d.stock) c.push(t("hStock", {a: x.d.stock[0], b: x.d.stock[1]}));
+    if (x.d.base) c.push(t("hPrecio", {a: pesos(x.d.base[0]), b: pesos(x.d.base[1])}));
+    if (x.d.ficha) c.push(t("hFicha"));
+    s = `<b>${esc(x.n)}</b>: ${c.join(", ")}`;
+  }
+  return s + (x.por === "admin" ? ` · <i>${t("hPorTaste")}</i>` : "");
+}
+function pintarAdmin(){
+  const q = sinAcentos(document.getElementById("aq").value);
+  const hist = leer().historial;
+  let tv = 0, tp = 0, ta = 0;
+  const filas = CERVECERIAS.map(cv => {
+    const cat = catalogoPublicado(cv.id);
+    const v = cat.filter(p => p.activo).length, pa = cat.length - v, ag = cat.filter(p => p.activo && p.stock <= 0).length;
+    tv += v; tp += pa; ta += ag;
+    return {cv, v, pa, ag, ult: hist.find(h => h.cerv === cv.id)};
+  });
+  document.getElementById("a-cerv").textContent = CERVECERIAS.length;
+  document.getElementById("a-venta").textContent = tv;
+  document.getElementById("a-pausa").textContent = tp;
+  document.getElementById("a-agot").textContent = ta;
+  const vis = filas.filter(f => !q || sinAcentos(`${f.cv.n} ${f.cv.ciudad} ${f.cv.id}`).includes(q));
+  document.getElementById("a-filas").innerHTML = vis.length ? vis.map(f => `<tr>
+    <td class="c1"><div class="c-cerv">${escudoHTML(f.cv, 40)}<div><b>${esc(f.cv.n)}</b><small>${esc(f.cv.ciudad)} · ${t("usuario")} ${f.cv.id}</small></div></div></td>
+    <td class="num ${f.v ? "" : "cero"}" data-l="${t("kVenta")}">${f.v}</td>
+    <td class="num ${f.pa ? "" : "cero"}" data-l="${t("kPausa")}">${f.pa}</td>
+    <td class="num ${f.ag ? "alerta" : "cero"}" data-l="${t("thAgot")}">${f.ag}</td>
+    <td class="ult">${f.ult ? `<time datetime="${f.ult.t}">${fechaCorta(f.ult.t)}</time>${histTexto(f.ult)}` : t("admSinCambios")}</td>
+    <td class="acc"><button class="b-adm" onclick="administrar('${f.cv.id}')">${t("administrar")}</button></td></tr>`).join("")
+    : `<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--tinta-60)">${t("admNinguna")}</td></tr>`;
+  document.getElementById("a-hist").innerHTML = hist.length
+    ? hist.slice(0, 40).map(x => `<li><time datetime="${x.t}">${fechaCorta(x.t)}</time><span><b>${esc(cervDe(x.cerv)?.n || x.cerv)}</b> — ${histTexto(x)}</span></li>`).join("")
+    : `<li><span style="color:var(--tinta-60)">${t("admNadie")}</span></li>`;
 }
 
 /* ---------- panel ---------- */
@@ -668,7 +998,7 @@ function filtrar(f){
   pintar();
 }
 function pintar(){
-  const q = document.getElementById("q").value.trim().toLowerCase();
+  const q = sinAcentos(document.getElementById("q").value);
   const pend = new Set(cambiosPendientes().map(p => p.sku));
   const venta = borrador.filter(p => p.activo), pausa = borrador.filter(p => !p.activo);
   document.getElementById("k-venta").textContent = venta.length;
@@ -680,16 +1010,13 @@ function pintar(){
   document.getElementById("n-pausa").textContent = pausa.length;
 
   let lista = borrador.filter(p => filtro === "todas" || (filtro === "venta" ? p.activo : !p.activo));
-  if (q) lista = lista.filter(p => `${p.n} ${p.estilo} ${p.sku} ${p.envase}`.toLowerCase().includes(q));
+  if (q) lista = lista.filter(p => sinAcentos(`${p.n} ${p.estilo} ${p.sku} ${p.envase} ${envTxt(p.envase)}`).includes(q));
   const rej = document.getElementById("rejilla");
-  if (!lista.length){
-    rej.innerHTML = `<div class="vacio"><b>${borrador.length ? "Nada con ese filtro" : "Todavía no tienes cervezas"}</b>${borrador.length ? "Prueba con otra pestaña o borra la búsqueda." : "Da de alta la primera con “＋ Nueva cerveza”."}</div>`;
-  } else {
-    rej.innerHTML = lista.map(p => tarjetaHTML(p, pend.has(p.sku))).join("");
-  }
+  rej.innerHTML = lista.length
+    ? lista.map(p => tarjetaHTML(p, pend.has(p.sku))).join("")
+    : `<div class="vacio"><b>${t(borrador.length ? "vacioFiltro" : "vacioNada")}</b>${t(borrador.length ? "vacioFiltroTxt" : "vacioNadaTxt")}</div>`;
   const n = pend.size;
-  document.getElementById("pub-n").textContent = n;
-  document.querySelector("#pub .n").firstElementChild.nextSibling.textContent = n === 1 ? " cambio sin publicar" : " cambios sin publicar";
+  document.getElementById("pub-txt").innerHTML = n === 1 ? t("pend1") : t("pendN", {n});
   document.getElementById("pub").classList.toggle("on", n > 0);
 }
 function tarjetaHTML(p, sucia){
@@ -700,9 +1027,9 @@ function tarjetaHTML(p, sucia){
       <div class="liq" style="background:linear-gradient(100deg,${col(p.estilo)},${col(p.estilo)}AA)"></div>
       <span class="t-sku">${p.sku}</span>
       <span class="etqs">
-        ${p.nuevo ? `<span class="pill nuevo">Nueva</span>` : ""}
-        ${agot ? `<span class="pill agot">Agotada</span>` : ""}
-        ${sucia ? `<span class="pill cambio">Sin publicar</span>` : ""}
+        ${p.nuevo ? `<span class="pill nuevo">${t("pNueva")}</span>` : ""}
+        ${agot ? `<span class="pill agot">${t("pAgot")}</span>` : ""}
+        ${sucia ? `<span class="pill cambio">${t("pSinPub")}</span>` : ""}
       </span>
     </div>
     <div class="t-cuerpo">
@@ -714,17 +1041,17 @@ function tarjetaHTML(p, sucia){
         ${p.premio ? `<span class="tag" style="background:var(--oro)">🏅 ${esc(p.premio[0])}</span>` : ""}
       </div>
       <div class="t-precio">
-        <div><span class="dato">Recibes</span><b>${pesos(rec * p.piezas)}</b><small>${pesos(rec)} por pieza</small></div>
-        <div><span class="dato">Precio al público</span><b>${pesos(p.base)}</b><small>por caja de ${p.piezas}</small></div>
+        <div><span class="dato">${t(esAdmin ? "recibe" : "recibes")}</span><b>${pesos(rec * p.piezas)}</b><small>${t("porPieza", {p: pesos(rec)})}</small></div>
+        <div><span class="dato">${t("precioPub")}</span><b>${pesos(p.base)}</b><small>${t("porCaja", {n: p.piezas})}</small></div>
       </div>
     </div>
     <div class="t-pie">
-      <label class="sw"><input type="checkbox" ${p.activo ? "checked" : ""} onchange="alternarActivo('${p.sku}', this.checked)" aria-label="En venta: ${esc(p.n)}"><span class="riel"></span><span class="est">${p.activo ? "En venta" : "Pausada"}</span></label>
-      <button class="b-editar" onclick="abrirEditor('${p.sku}')">Editar</button>
-      <div class="stock-w"><span class="stock-lab">Cajas</span><div class="stock" title="Cajas disponibles">
-        <button onclick="moverStock('${p.sku}',-1)" aria-label="Una caja menos">−</button>
-        <input type="number" min="0" max="999" value="${p.stock}" onchange="fijarStock('${p.sku}', this.value)" aria-label="Cajas disponibles de ${esc(p.n)}">
-        <button onclick="moverStock('${p.sku}',1)" aria-label="Una caja más">+</button>
+      <label class="sw"><input type="checkbox" ${p.activo ? "checked" : ""} onchange="alternarActivo('${p.sku}', this.checked)" aria-label="${t("enVentaDe", {n: esc(p.n)})}"><span class="riel"></span><span class="est">${t(p.activo ? "enVenta" : "pausada")}</span></label>
+      <button class="b-editar" onclick="abrirEditor('${p.sku}')">${t("editar")}</button>
+      <div class="stock-w"><span class="stock-lab">${t("cajas")}</span><div class="stock" title="${t("cajasDisp")}">
+        <button onclick="moverStock('${p.sku}',-1)" aria-label="${t("cajaMenos")}">−</button>
+        <input type="number" min="0" max="999" value="${p.stock}" onchange="fijarStock('${p.sku}', this.value)" aria-label="${t("cajasDe", {n: esc(p.n)})}">
+        <button onclick="moverStock('${p.sku}',1)" aria-label="${t("cajaMas")}">+</button>
       </div></div>
     </div>
   </article>`;
@@ -732,20 +1059,20 @@ function tarjetaHTML(p, sucia){
 const bor = sku => borrador.find(p => p.sku === sku);
 function alternarActivo(sku, on){
   bor(sku).activo = on; pintar();
-  tostada(on ? "Queda en venta al publicar" : "Queda pausada al publicar", on ? "✓" : "‖");
+  tostada(t(on ? "tEnVenta" : "tPausada"), on ? "✓" : "‖");
 }
 function moverStock(sku, d){ const p = bor(sku); p.stock = Math.max(0, Math.min(999, (p.stock|0) + d)); pintar(); }
 function fijarStock(sku, v){ const p = bor(sku); p.stock = Math.max(0, Math.min(999, parseInt(v,10) || 0)); pintar(); }
 
 /* ---------- publicar ---------- */
-function describir(p, antes){
-  if (!antes) return `Alta de <b>${esc(p.n)}</b> (${p.piezas} × ${p.ml} ml ${p.envase}) · ${p.activo ? "en venta" : "pausada"}`;
-  const c = [];
-  if (antes.activo !== p.activo) c.push(p.activo ? "reactivada" : "pausada");
-  if (antes.stock !== p.stock) c.push(`existencia ${antes.stock} → ${p.stock} cajas`);
-  if (antes.base !== p.base) c.push(`precio al público ${pesos(antes.base)} → ${pesos(p.base)}`);
-  if (antes.n !== p.n || antes.estilo !== p.estilo || antes.abv !== p.abv || antes.ibu !== p.ibu || antes.ml !== p.ml || antes.envase !== p.envase || antes.piezas !== p.piezas) c.push("ficha actualizada");
-  return `<b>${esc(p.n)}</b>: ${c.join(", ")}`;
+function registro(p, antes){
+  if (!antes) return {tipo:"alta", n:p.n, pz:p.piezas, ml:p.ml, env:p.envase, act:p.activo};
+  const d = {};
+  if (antes.activo !== p.activo) d.activo = p.activo;
+  if (antes.stock !== p.stock) d.stock = [antes.stock, p.stock];
+  if (antes.base !== p.base) d.base = [antes.base, p.base];
+  if (antes.n !== p.n || antes.estilo !== p.estilo || antes.abv !== p.abv || antes.ibu !== p.ibu || antes.ml !== p.ml || antes.envase !== p.envase || antes.piezas !== p.piezas) d.ficha = true;
+  return {tipo:"cambio", n:p.n, d};
 }
 function publicar(){
   const pend = cambiosPendientes();
@@ -761,29 +1088,30 @@ function publicar(){
     } else {
       d.cambios[p.sku] = {n:p.n, estilo:p.estilo, abv:p.abv, ibu:p.ibu, envase:p.envase, ml:p.ml, piezas:p.piezas, base:p.base, stock:p.stock, activo:p.activo};
     }
-    d.historial.unshift({t:ahora, cerv:yo.id, txt:describir(p, antes)});
+    d.historial.unshift({t:ahora, cerv:yo.id, por: esAdmin ? "admin" : yo.id, sku:p.sku, ...registro(p, antes)});
   });
   d.historial = d.historial.slice(0, 200);
-  if (!escribir(d)){ tostada("No se pudo guardar en este navegador (¿modo privado?)", "!"); return; }
+  if (!escribir(d)){ tostada(t("tNoGuarda"), "!"); return; }
   publicado = clon(borrador);
   pintar(); pintarHist();
-  tostada(pend.length === 1 ? "Publicado · ya se ve en la página de venta" : `${pend.length} cambios publicados · ya se ven en la página`, "🍺");
+  tostada(pend.length === 1 ? t("tPub1") : t("tPubN", {n: pend.length}), "🍺");
 }
-function descartar(){ borrador = clon(publicado); pintar(); tostada("Cambios descartados", "↺"); }
+function descartar(){ borrador = clon(publicado); pintar(); tostada(t("tDescartados"), "↺"); }
 function pintarHist(){
   const h = leer().historial.filter(x => x.cerv === yo.id);
-  const f = t => new Date(t).toLocaleString("es-MX", {day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit"});
   document.getElementById("hist").innerHTML = h.length
-    ? h.slice(0, 30).map(x => `<li><time datetime="${x.t}">${f(x.t)}</time><span>${x.txt}</span></li>`).join("")
-    : `<li><span style="color:var(--tinta-60)">Aún no publicas cambios. Cuando lo hagas, quedan registrados aquí.</span></li>`;
+    ? h.slice(0, 30).map(x => `<li><time datetime="${x.t}">${fechaCorta(x.t)}</time><span>${histTexto(x)}</span></li>`).join("")
+    : `<li><span style="color:var(--tinta-60)">${t("histVacio")}</span></li>`;
 }
 function reiniciarDemo(){
   try { localStorage.removeItem(CLAVE); } catch(_){}
-  entrar(yo.id); tostada("Demo reiniciado: catálogo original", "↺");
+  if (yo) entrar(yo.id); else pintarAdmin();
+  tostada(t("tReinicio"), "↺");
 }
 
 /* ---------- editor ---------- */
 const ML = {lata:[355,473], botella:[330,355,473,500,650,750]};
+const ESTILOS = Object.values(CATEGORIAS).flat();
 const radio = n => document.querySelector(`input[name="${n}"]:checked`).value;
 function setRadio(n, v){ const r = document.querySelector(`input[name="${n}"][value="${v}"]`); if (r) r.checked = true; }
 function llenarML(sel){
@@ -792,18 +1120,34 @@ function llenarML(sel){
   s.value = ML[env].includes(sel) ? sel : ML[env][env === "lata" ? 0 : 1];
 }
 function pintarEstilos(){
-  document.getElementById("ed-estilo").innerHTML = Object.entries(CATEGORIAS).map(([c, es]) =>
-    `<optgroup label="${c}">${es.map(e => `<option>${e}</option>`).join("")}</optgroup>`).join("");
+  /* sugerencias: los estilos del catálogo más los que ya escribieron las cervecerías */
+  const propios = leer().nuevos.map(n => n.estilo).concat(borrador.map(p => p.estilo));
+  const todos = [...new Set([...ESTILOS, ..._P.map(a => a[3]), ...propios])].sort((a, b) => a.localeCompare(b));
+  document.getElementById("lista-estilos").innerHTML = todos.map(e => `<option value="${esc(e)}"></option>`).join("");
+}
+function limpiarEstilo(v){
+  const s = v.replace(/\s+/g, " ").trim();
+  const igual = [...ESTILOS, ..._P.map(a => a[3])].find(e => sinAcentos(e) === sinAcentos(s));
+  return igual || s;                                      /* respeta la escritura oficial si coincide */
+}
+function textosEditor(){
+  const p = editando ? bor(editando) : null;
+  document.getElementById("ed-tit").textContent = t(p ? "edEditar" : "edNueva");
+  document.getElementById("ed-ok").textContent = t(p ? "edGuardar" : "edAgregar");
+  document.getElementById("ed-nota").textContent = p ? t("edNotaEditar", {s: p.sku}) : t("edNotaNueva");
+  const err = document.getElementById("ed-error"); if (err.dataset.k) err.textContent = t(err.dataset.k);
+}
+function errorEditor(k){
+  const err = document.getElementById("ed-error");
+  if (!k){ err.classList.add("oculto"); delete err.dataset.k; return; }
+  err.dataset.k = k; err.textContent = t(k); err.classList.remove("oculto");
 }
 function abrirEditor(sku){
   editando = sku || null;
   const p = sku ? bor(sku) : null;
-  document.getElementById("ed-tit").textContent = p ? "Editar cerveza" : "Nueva cerveza";
-  document.getElementById("ed-ok").textContent = p ? "Guardar cambios" : "Agregar cerveza";
-  document.getElementById("ed-nota").textContent = p ? `SKU ${p.sku}. El cambio queda pendiente hasta que publiques.` : "El SKU se genera solo. Queda pendiente hasta que publiques.";
-  document.getElementById("ed-error").classList.add("oculto");
+  errorEditor(null); textosEditor(); pintarEstilos();
   document.getElementById("ed-n").value = p ? p.n : "";
-  document.getElementById("ed-estilo").value = p ? p.estilo : "IPA";
+  document.getElementById("ed-estilo").value = p ? p.estilo : "";
   document.getElementById("ed-abv").value = p ? p.abv : 6.0;
   document.getElementById("ed-ibu").value = p ? p.ibu : 40;
   setRadio("ed-env", p ? p.envase : "lata");
@@ -821,7 +1165,7 @@ function cerrarEditor(){ document.getElementById("m-editor").classList.remove("o
 function leerForm(){
   return {
     n: document.getElementById("ed-n").value.trim(),
-    estilo: document.getElementById("ed-estilo").value,
+    estilo: limpiarEstilo(document.getElementById("ed-estilo").value),
     abv: Math.round((parseFloat(document.getElementById("ed-abv").value) || 0) * 10) / 10,
     ibu: parseInt(document.getElementById("ed-ibu").value, 10) || 0,
     envase: radio("ed-env"),
@@ -835,21 +1179,22 @@ function leerForm(){
 function previa(){
   const f = leerForm();
   const rec = f.rec || 0, c = cuota(rec || 1), base = basePorCaja(rec, f.piezas);
+  const estilo = f.estilo || t("edEstilo");
   document.getElementById("ed-previa").innerHTML = `<article class="prod">
     <div class="prod-top"><div class="liq" style="background:linear-gradient(175deg,${col(f.estilo)},${col(f.estilo)}CC)"></div>
       ${siluetaHTML(f.envase)}${escudoHTML(yo, 42)}<div class="esp"></div></div>
     <div class="cuerpo"><span class="cerv-n">${esc(yo.n)} · ${esc(yo.ciudad)}</span>
-      <h3>${esc(f.n) || "Nombre de tu cerveza"}</h3>
-      <div class="tags"><span class="tag" style="background:${col(f.estilo)}44">${esc(f.estilo)}</span>
+      <h3>${esc(f.n) || t("pvNombre")}</h3>
+      <div class="tags"><span class="tag" style="background:${col(f.estilo)}44">${esc(estilo)}</span>
         <span class="tag envase">${f.envase === "lata" ? "🥫" : "🍾"} ${f.piezas} × ${f.ml} ml</span></div>
-      <div class="specs"><span>ABV <b>${f.abv}%</b></span><span>IBU <b>${f.ibu}</b></span><span>${f.stock > 0 ? `<b>${f.stock}</b> cajas` : "Agotada"}</span></div>
-      <div class="precio"><b>${rec ? pesos(base) : "$—"}</b><span>caja de ${f.piezas} · ${rec ? pesos(rec + c) : "$—"} c/u</span></div></div></article>`;
+      <div class="specs"><span>ABV <b>${f.abv}%</b></span><span>IBU <b>${f.ibu}</b></span><span>${f.stock > 0 ? t("pvCajas", {n: f.stock}) : t("pAgot")}</span></div>
+      <div class="precio"><b>${rec ? pesos(base) : "$—"}</b><span>${t("pvCaja", {n: f.piezas, p: rec ? pesos(rec + c) : "$—"})}</span></div></div></article>`;
   document.getElementById("ed-desg").innerHTML = rec ? `
-    <div><span>Recibes por pieza</span><span class="mono">${pesos(rec)}</span></div>
-    <div><span>Cuota el TASTE por pieza</span><span class="mono">+ ${pesos(c)}</span></div>
-    <div><span>Precio al público por pieza</span><span class="mono">${pesos(rec + c)}</span></div>
-    <div class="tot"><span>Se deposita a tu cuenta por caja</span><span class="mono">${pesos(rec * f.piezas)}</span></div>`
-    : `<div><span>Escribe lo que recibes por pieza para ver el precio.</span></div>`;
+    <div><span>${t("dRecibes")}</span><span class="mono">${pesos(rec)}</span></div>
+    <div><span>${t("dCuota")}</span><span class="mono">+ ${pesos(c)}</span></div>
+    <div><span>${t("dPub")}</span><span class="mono">${pesos(rec + c)}</span></div>
+    <div class="tot"><span>${t("dDeposito")}</span><span class="mono">${pesos(rec * f.piezas)}</span></div>`
+    : `<div><span>${t("dVacio")}</span></div>`;
 }
 function nuevoSKU(f){
   const pre = (_P.find(a => a[1] === yo.id)?.[0].slice(0,2)) || yo.id.slice(0,2).toUpperCase();
@@ -863,20 +1208,21 @@ document.getElementById("f-ed").addEventListener("input", e => { if (e.target.na
 document.getElementById("f-ed").addEventListener("change", e => { if (e.target.name === "ed-env") { llenarML(); previa(); } });
 document.getElementById("f-ed").addEventListener("submit", e => {
   e.preventDefault();
-  const f = leerForm(), err = document.getElementById("ed-error");
-  const falla = !f.n ? "Ponle nombre a la cerveza."
-    : f.abv <= 0 || f.abv > 20 ? "Revisa el ABV (entre 0.1 y 20%)."
-    : f.rec < 10 ? "Escribe lo que recibes por pieza (mínimo $10)."
-    : borrador.some(p => p.sku !== editando && p.n.toLowerCase() === f.n.toLowerCase() && p.piezas === f.piezas && p.ml === f.ml) ? "Ya tienes esa cerveza en esa presentación." : "";
-  if (falla){ err.textContent = falla; err.classList.remove("oculto"); return; }
+  const f = leerForm();
+  const falla = !f.n ? "eNombre"
+    : !f.estilo ? "eEstilo"
+    : f.abv <= 0 || f.abv > 20 ? "eAbv"
+    : f.rec < 10 ? "ePrecio"
+    : borrador.some(p => p.sku !== editando && p.n.toLowerCase() === f.n.toLowerCase() && p.piezas === f.piezas && p.ml === f.ml) ? "eDup" : "";
+  if (falla) return errorEditor(falla);
   const datos = {n:f.n, estilo:f.estilo, abv:f.abv, ibu:f.ibu, envase:f.envase, ml:f.ml, piezas:f.piezas, stock:f.stock, activo:f.activo, base:basePorCaja(f.rec, f.piezas)};
   if (editando){
     Object.assign(bor(editando), datos);
-    tostada("Cambios listos · toca Publicar", "✎");
+    tostada(t("tListos"), "✎");
   } else {
     borrador.unshift({sku:nuevoSKU(f), cerv:yo.id, premio:null, nuevo:true, ...datos});
     filtro = "todas";
-    tostada("Cerveza agregada · toca Publicar para que salga en la página", "＋");
+    tostada(t("tAgregada"), "＋");
   }
   cerrarEditor(); filtrar(filtro);
 });
@@ -885,10 +1231,13 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && document.g
 window.addEventListener("beforeunload", e => { if (yo && cambiosPendientes().length){ e.preventDefault(); e.returnValue = ""; } });
 
 /* ---------- arranque ---------- */
-if (MODO_DEMO) pintarUsuarios();
-else { document.getElementById("acc-demo").remove(); document.getElementById("pie-demo").remove(); }
-pintarEstilos();
-try { const s = sessionStorage.getItem(SESION); if (s && cervDe(s)) entrar(s); } catch(_){}
+if (!MODO_DEMO){ document.getElementById("acc-demo").remove(); document.getElementById("pie-demo").remove(); document.querySelector(".pie-demo2").remove(); }
+try {
+  const s = sessionStorage.getItem(SESION);
+  if (s === USU_ADMIN){ esAdmin = true; abrirAdmin(); }
+  else if (s && cervDe(s)) entrar(s);
+} catch(_){}
+aplicarIdioma();
 </script>
 </body>
 </html>
