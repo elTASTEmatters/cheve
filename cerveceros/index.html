@@ -622,6 +622,18 @@ const _P = [
 ];
 const CON_LOGO = new Set(["amante"]);
 
+/* Cervecería de prueba: un solo acceso para que cualquier cervecero practique.
+   No sale en la página de venta ni en la lista de administración. */
+const USU_PRUEBA = "prueba";
+const CERV_PRUEBA = {id:USU_PRUEBA, n:"Cervecería de Prueba", ciudad:"Baja California", logo:null, bg:"#2E4A3A", fg:"#F2B518",
+  mp:"mpago.la/tu-cerveceria", dir:"Calle de ejemplo 123", hor:"Lun a Sáb · 10:00–18:00", desde:2026};
+_P.push(
+  ["PR-LAG-24","prueba","Lager de la Casa","Lager",4.5,18,"lata",355,24,1296,20,null],
+  ["PR-IPA-12","prueba","IPA de Prueba","IPA",6.8,60,"lata",473,12,1140,8,null],
+  ["PR-STO-24","prueba","Stout del Valle","Stout",6.2,35,"botella",355,24,1488,5,null],
+  ["PR-BAR-12","prueba","Barrica Reserva","Barrica",11.0,40,"botella",750,12,2928,0,null]
+);
+
 const CLAVE = "elTASTE.portal.v1";
 const SESION = "elTASTE.portal.sesion";
 const CLAVE_IDIOMA = "elTASTE.portal.idioma";
@@ -642,6 +654,7 @@ es: {
   accDemo:"Accesos de demostración",
   accDemoTxt:'Cada cervecería tiene su propio usuario. En este demo la contraseña de todas es <b class="mono" style="color:var(--oro)">cheve2026</b>. Toca una para llenar el acceso.',
   accAdmin:"Administración el TASTE · contraseña {p}",
+  accPrueba:"Cervecería de Prueba · para practicar · contraseña {p}",
   accPie:"Acceso exclusivo para cervecerías aliadas de el TASTE.<br>¿Perdiste tu contraseña? Escríbenos por WhatsApp al 686 262 5119.",
   errVacio:"Escribe tu usuario y tu contraseña.", errMal:"Usuario o contraseña incorrectos.",
   verVenta:"Ver página de venta", venta:"Venta", salir:"Salir",
@@ -703,6 +716,7 @@ en: {
   accDemo:"Demo logins",
   accDemoTxt:'Each brewery has its own username. In this demo every password is <b class="mono" style="color:var(--oro)">cheve2026</b>. Tap one to fill in the login.',
   accAdmin:"el TASTE admin · password {p}",
+  accPrueba:"Test Brewery · practice account · password {p}",
   accPie:"For el TASTE partner breweries only.<br>Lost your password? Message us on WhatsApp at +52 686 262 5119.",
   errVacio:"Enter your username and password.", errMal:"Wrong username or password.",
   verVenta:"View store", venta:"Store", salir:"Sign out",
@@ -773,7 +787,7 @@ const basePorCaja = (b, piezas) => (b + cuota(b)) * piezas;
 
 const pesos = n => "$" + Math.round(n).toLocaleString("es-MX");
 const col = e => COLOR[e] || "#9A8F84";
-const cervDe = id => CERVECERIAS.find(c => c.id === id);
+const cervDe = id => id === USU_PRUEBA ? CERV_PRUEBA : CERVECERIAS.find(c => c.id === id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const sinAcentos = s => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").trim().toLowerCase();
 const envTxt = e => t(e === "lata" ? "lata" : "botella");
@@ -863,6 +877,7 @@ function cambiosPendientes(){
 /* ---------- acceso ---------- */
 function pintarUsuarios(){
   document.getElementById("lista-usu").innerHTML =
+    `<button type="button" onclick="llenarAcceso('${USU_PRUEBA}')" style="grid-column:1/-1;background:rgba(187,207,64,.2)"><b>${USU_PRUEBA}</b>${t("accPrueba", {p: PASS_DEMO})}</button>` +
     `<button type="button" onclick="llenarAcceso('${USU_ADMIN}')" style="grid-column:1/-1;background:rgba(242,181,24,.18)"><b>${USU_ADMIN}</b>${t("accAdmin", {p: PASS_ADMIN_DEMO})}</button>` +
     CERVECERIAS.map(c => `<button type="button" onclick="llenarAcceso('${c.id}')"><b>${c.id}</b>${esc(c.n)}</button>`).join("");
 }
